@@ -8,12 +8,12 @@ of any type.
 
 The code is written in python 3.9. It has not been tested in any other version. Compatibility is not ensured.
 
-If familiar with SeqUtils users can easily expand this code to aquire other important information from the databases
-For further documentation about the package visit:
+If familiar with SeqUtils, users can easily expand this code to aquire sequence information from ProtParam, or other SeqUtils resources.
+For further documentation about the package used in this code (ProtParam) visit:
 
 https://biopython.org/docs/1.75/api/Bio.SeqUtils.ProtParam.html
 
-The output of the program is a .txt file which is actually a .csv file. It can be easily opened in excel and transformed in a table using PowerQuery. 
+The output of the program is a .txt file which contains the information in a CSV fashion. It can be easily opened in excel and transformed in a table using PowerQuery. 
 Notice that Excel's PowerQuery tends to change data type information. If your program is trying to do this just DENY or CANCEL that change. OTHERWISE THIS MIGHT CAUSE TROUBLE
 WITH FLOAT NUMBERS.
 
