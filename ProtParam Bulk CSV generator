@@ -1,38 +1,26 @@
 from Bio import SeqIO
 from Bio.SeqUtils import ProtParam
 
-#We will dump results on a previously created .txt file, be sure to rute it properly here.
-#ALSO this file will contain your results in a CSV format with a proper header. Collected data will be: Name, sequence lenght, MW in kDa, Isoelectric point and GRAVY index
-
-with open("Route to a new empty txt file!", "r+") as results:
-
+#We will dump results on a .txt file, be sure to route it properly here, ALSO this file will contain your results in a CSV format with a proper header:
+with open(r"INSTERT_FILE_PATH_FOR_NEW_TXT_FILE_FOR_RESULTS", "r+") as results:
     #This will just call the FASTA file we need to make the bulk analysis:
-    handle = open ("Route to your fasta for analysis")
-    
-    #This will be the header for our csv file:
-    header = "Accession, Aa Num, MW (kDa), IP, GRAVY index \n"
-    
+    handle = open(r"INSTERT_FILE_PATH_FOR_FASTA")
+    #This will be the headerfor our csv file:
+    header = "Accession, Aa Num, MW (kDa), IP, GRAVY index, Sequence \n"
     results.write(header)
-    #Next we call the function to read each fasta sequence in our FASTA file:
+
     for record in SeqIO.parse(handle, "fasta"):
-        #We call the Accession number or Sequence name (that's up to your FASTA's content)
         acc = str(record.id) + ", "
-        #We store the "sequence variable"
         seq = str(record.seq)
         param = ProtParam.ProteinAnalysis(seq)
-        #We count sequence length
         num = str(len(seq)) + ", "
-        #We retrieve MW info, reduce the float size and divide by 1000 to get kDa
         mw = str("%0.5f" % (param.molecular_weight()/1000)) +", "
-        #We retrieve isoelectric point data
         ip = str(param.isoelectric_point()) +", "
-        #We retrieve GRAVY index data
-        gravy = str(param.gravy()) +", \n"
-        #We combine every parameter obtained from the sequence and make a single string
-        all = acc + num + mw + ip + gravy
-        #We write the string to the TXT file
+        gravy = str(param.gravy()) +", "
+        seqt = seq + " \n"
+        all = acc + num + mw + ip + gravy + seqt
         results.write(all)
-        #Print to check for any mistakes (print does not include header)
         print (all)
 
     print("Your analysis is complete.")
+
